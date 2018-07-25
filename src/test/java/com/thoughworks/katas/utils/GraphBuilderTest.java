@@ -1,5 +1,6 @@
-package com.thoughworks.katas;
+package com.thoughworks.katas.utils;
 
+import com.thoughworks.katas.railways.Graph;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -10,15 +11,16 @@ public class GraphBuilderTest {
     public void givenNoInput_returnsEmptyGraphWithoutTracks() {
         String[] input = {};
         Graph graph = GraphBuilder.buildGraphFrom(input);
-        //here i do not check for the graph to be empty but that a property of the graph is empty = ok?
-        assertEquals(true, graph.tracks.isEmpty());
+        //how to better assert? here i had to made tracks field public
+       assertEquals(true, graph.tracks.isEmpty());
     }
 
     @Test
-    public void givenInputOfTwoTracksAsStrings_returnGraphWithTwoTracks() {
+    public void givenInputOfTwoTracksAsStrings_returnsGraphWithTwoTracks() {
         String[] input = {"AB5", "BC4"};
+
         Graph graph = GraphBuilder.buildGraphFrom(input);
-        //here i do not check for the graph to be empty but that a property of the graph is empty = ok?
+        //how to better assert? here i had to made tracks field public
         assertEquals(2, graph.tracks.size());
     }
 

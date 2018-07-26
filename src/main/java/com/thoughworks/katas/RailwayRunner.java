@@ -5,20 +5,28 @@ import com.thoughworks.katas.railways.Town;
 import com.thoughworks.katas.utils.GraphBuilder;
 import com.thoughworks.katas.utils.InputParser;
 
+import java.util.NoSuchElementException;
 
 public class RailwayRunner {
 
     public static void main(String[] args) {
+
         InputParser parser = new InputParser();
-        String[] input = parser.readFile("input.txt");
-
-        Graph graph = GraphBuilder.buildGraphFrom(input);
+        String[] inputGraph = parser.readGraphInputFile("inputGraph.txt");
+        String[] inputRoutes = parser.readRouteInputFile("inputRoutes.txt");
+        Graph graph = GraphBuilder.buildGraphFrom(inputGraph);
         RailwayGuide guide = new RailwayGuide(graph);
+        Town[] towns;
 
-        Town[] route1 = {new Town ("A"), new Town ("B"),new Town ("C")};
-
-        System.out.println("Output #1: " + guide.getDistanceOfRoute(route1));
-
-
+        int counter = 1;
+        for (String route : inputRoutes) {
+            towns = parser.getTownsOf(route);
+            try {
+                System.out.println("Output #"+counter+": " + guide.getDistanceOfRoute(towns));
+            } catch (NoSuchElementException e) {
+                System.out.println("Output #"+counter+": No such route");
+            }
+            counter ++;
+        }
     }
 }

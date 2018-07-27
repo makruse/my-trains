@@ -12,7 +12,7 @@ Java 8
 Unit Test cases have been written using JUnit 4.
 
 ```
-mvn test
+mvn clean verify 
 ```
 
 ##Running the app

@@ -22,4 +22,28 @@ public class RailwayGuide {
             throw new NoSuchElementException("No such route");
         }
     }
+
+    public void run(String[] inputRoutes) {
+        Town[] towns;
+
+        int counter = 1;
+        for (String route : inputRoutes) {
+            towns = getTownsOf(route);
+            try {
+                System.out.println("Output #" + counter + ": " + getDistanceOfRoute(towns));
+            } catch (NoSuchElementException e) {
+                System.out.println("Output #" + counter + ": No such route");
+            }
+            counter++;
+        }
+    }
+
+   private Town[] getTownsOf(String route) {
+        Town towns[];
+        towns = new Town[route.length()];
+        for (int i = 0; i < route.length(); i++) {
+            towns[i] = new Town(Character.toString(route.charAt(i)));
+        }
+        return towns;
+    }
 }

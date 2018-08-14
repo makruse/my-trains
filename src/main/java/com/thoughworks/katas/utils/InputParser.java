@@ -18,7 +18,7 @@ public class InputParser {
         String[] result = input.split("\\r?\\n");
 
         //This would still allow to put AE7 and AE8
-        //how to make it more accurate?
+        // -> add filter for duplicates AB
         String[] resultWithoutDuplicates = Arrays.stream(result).distinct().toArray(s -> new String[s]);
 
         return resultWithoutDuplicates;
@@ -33,14 +33,5 @@ public class InputParser {
         String[] routes = input.split("\\r?\\n");
 
         return routes;
-    }
-
-    public Town[] getTownsOf(String route) {
-        Town towns[];
-        towns = new Town[route.length()];
-        for (int i = 0; i < route.length(); i++) {
-            towns[i] = new Town(Character.toString(route.charAt(i)));
-        }
-        return towns;
     }
 }

@@ -1,11 +1,8 @@
 package com.thoughworks.katas;
 
 import com.thoughworks.katas.railways.Graph;
-import com.thoughworks.katas.railways.Town;
 import com.thoughworks.katas.utils.GraphBuilder;
 import com.thoughworks.katas.utils.InputParser;
-
-import java.util.NoSuchElementException;
 
 public class RailwayRunner {
 
@@ -16,17 +13,7 @@ public class RailwayRunner {
         String[] inputRoutes = parser.readRouteInputFile("inputRoutes.txt");
         Graph graph = GraphBuilder.buildGraphFrom(inputGraph);
         RailwayGuide guide = new RailwayGuide(graph);
-        Town[] towns;
 
-        int counter = 1;
-        for (String route : inputRoutes) {
-            towns = parser.getTownsOf(route);
-            try {
-                System.out.println("Output #"+counter+": " + guide.getDistanceOfRoute(towns));
-            } catch (NoSuchElementException e) {
-                System.out.println("Output #"+counter+": No such route");
-            }
-            counter ++;
-        }
+        guide.run(inputRoutes);
     }
 }
